@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import CommentForm from './CommentFormComponent';
 
    function RenderDish({dish}){
     if (dish != null)
@@ -28,8 +28,13 @@ else
        const comment = comments.map(c => {
            let d = new Date();
            let m = ["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct", "Nov", "Dec"];
-           let date = m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
-           return (<li key={c.id.toString()} className="m-1">-- {c.author+' , '+' '+date}</li>);
+           //let date = m[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+           return (
+            <div>
+           <li>{c.comment}</li>
+           <li key={c.id.toString()} className="m-1">-- {c.author} {m[d.getMonth()]} {d.getDate()}, {d.getFullYear()}</li>
+           </div>
+           );
 
        });
        
@@ -67,7 +72,9 @@ else
             </div>
             <div className="col-12 col-md-5 m-1">
                 <RenderComments comments={props.comments} />
+                <CommentForm />
             </div>
+           
         </div>
         </div>
        );
