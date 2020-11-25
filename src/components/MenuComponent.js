@@ -24,7 +24,7 @@ import { Loading } from './LoadingComponent';
                 return(
                     <div className="container">
                         <div className="row">
-                            {console.log("***********************LOADING COMPONENT SUCCESSFUL ********************************************")}            
+                   
                             <Loading />
                         </div>
                     </div>

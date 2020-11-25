@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Modal, ModalBody, ModalHeader, FormGroup, Label} from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors, actions } from 'react-redux-form';
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
