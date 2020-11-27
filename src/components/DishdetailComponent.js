@@ -3,7 +3,7 @@ import { Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalBody, ModalHeader, FormGroup, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-
+import { baseUrl } from '../shared/baseUrl';
 
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
@@ -14,7 +14,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
     if (dish != null)
     return(
         <Card>
-            <CardImg top src={dish.image} alt={dish.name} />
+            <CardImg top src={baseUrl + dish.image} alt={dish.name} />
             <CardBody>
               <CardTitle>{dish.name}</CardTitle>
               <CardText>{dish.description}</CardText>
@@ -28,7 +28,7 @@ else
    }
    
    
- function RenderComments({comments, addComment, dishId}){
+function RenderComments({comments, postComment, dishId}) {
     if (comments!=null){
         
        const comment = comments.map(c => {
@@ -49,7 +49,7 @@ else
           <h4>Comments</h4>
             <ul className="list-unstyled">
                 {comment}
-                <CommentForm dishId={dishId} addComment={addComment} />
+                <CommentForm dishId={dishId} postComment={postComment} />
             </ul>
         </div>
      );
@@ -79,7 +79,7 @@ else
         // event.preventDefault();
         this.toggleModal();
         //alert('Current State is: ' + JSON.stringify(values));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
    render(){
     
@@ -196,7 +196,7 @@ else
             </div>
             <div className="col-12 col-md-5 m-1">
             <RenderComments comments={props.comments}
-                    addComment={props.addComment}
+                    postComment={props.postComment}
             dishId={props.dish.id}
       />
             </div>
